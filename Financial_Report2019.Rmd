@@ -1,0 +1,113 @@
+---
+title: "Washington Cooperative Fish & Wildlife Research Unit FY2019 Financial Report"
+date: "October 23, 2019"
+output: word_document
+---
+
+```{r setup, echo = FALSE, warning = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(knitr)
+library(scales)
+library(ggplot2)
+library(tidyr)
+
+Year <- "2019"
+Year.m1 <- as.character(as.numeric(Year)-1)
+Year.p1 <- as.character(as.numeric(Year)+1)
+start.date <- paste("7/1/",Year.m1,sep="")
+end.date <- paste("6/30/",Year,sep="")
+  
+projects <- read.csv("ProjectData.csv")
+coop.projects <- projects[c(projects$Coop == 1),]
+
+totaldollars <- dollar(sum(coop.projects$TotalDollars))
+newdollars <- dollar(sum(coop.projects$NewDollars))
+
+funds.by.agency <- aggregate(coop.projects$TotalDollars,by=list(coop.projects$ParentAgency), FUN = sum)
+funds.by.agency <- funds.by.agency[order(funds.by.agency$x,decreasing=TRUE),]
+agency1 <- funds.by.agency[1,1]
+agency2 <- funds.by.agency[2,1]
+agency3 <- funds.by.agency[3,1]
+
+total.funds.by.sponsor <- aggregate(coop.projects$TotalDollars,by = list(coop.projects$Sponsor,coop.projects$University),FUN=sum, drop = FALSE)
+
+new.funds.by.sponsor <- aggregate(coop.projects$NewDollars,by = list(coop.projects$Sponsor,coop.projects$University),FUN=sum, drop = FALSE)
+
+sponsor <- cbind(total.funds.by.sponsor,new.funds.by.sponsor[,3])
+colnames(sponsor) <- c("Sponsor","University","Total Funds","New Funds")
+
+Required <- c("WDFW-Fisheries","WDFW-Habitat","WDFW-Wildlife","WDNR","WDOE")
+Required <- is.element(sponsor[,1],Required)
+sponsor[intersect(which(Required == TRUE), which(is.na(sponsor$'Total Funds'==TRUE))),c(3,4)] <- 0
+sponsor <- sponsor[complete.cases(sponsor), ]
+sponsor$'Total Funds' <- dollar(sponsor$'Total Funds')
+sponsor$'New Funds' <- dollar(sponsor$'New Funds')
+
+
+
+```
+
+## Total Project Funds
+
+The WACFWRU Cooperative Agreement facilitated `r totaldollars` in total project funds across the University of Washington and Washington State University in state fiscal year `r Year` (`r start.date` to `r end.date`), with `r newdollars` in new project funds. `r agency1` was the largest single funder, followed by `r agency2` and `r agency3`.
+
+
+```{r echo=FALSE}
+
+kable(sponsor, caption = paste("Table 1. Total funds and new funds by sponsor and university in FY",Year,sep=""))
+
+waiver <- read.csv("WaiverUsage.csv")
+waiver <- waiver[,c(1,2,ncol(waiver)-1,ncol(waiver))]
+
+total.waiver <- dollar(400000)
+
+UW <- waiver[which(waiver$University == "UW"),-c(1)]
+UW.waiver.left <- dollar(400000 - sum(UW[,ncol(UW)-1]))
+UW.waiver.avail <- dollar(400000 - sum(UW[,ncol(UW)]))
+
+WSU <- waiver[which(waiver$University == "WSU"),-c(1)]
+WSU.waiver.left <- dollar(400000 - sum(WSU[,ncol(WSU)-1]))
+WSU.waiver.avail <- dollar(400000 - sum(WSU[,ncol(WSU)])) 
+
+```
+
+## Waiver Usage
+
+At UW, `r UW.waiver.left` of the `r total.waiver` waiver was unused by the end of FY`r Year`. As of the date of this report, `r UW.waiver.avail` is still available for FY`r Year.p1`. At WSU, `r WSU.waiver.left` was unused by the end of FY`r Year`, while `r WSU.waiver.avail` is still available for FY`r Year.p1`.
+
+
+```{r echo=FALSE, fig.height = 3, fig.width = 5}
+
+UW %>%
+  gather("Type","Value",-Agency) %>%
+  ggplot(aes(Agency,Value,fill=Type))+
+  geom_bar(position = "dodge",stat="identity")+
+  theme_bw()
+
+WSU %>%
+  gather("Type","Value",-Agency) %>%
+  ggplot(aes(Agency,Value,fill=Type))+
+  geom_bar(position = "dodge",stat="identity")+
+  theme_bw()
+
+base <- read.csv("BaseSpending.csv")
+balance <- dollar(base[nrow(base),ncol(base)])
+spending <- dollar(base[nrow(base)-1,ncol(base)])
+income <- dollar(71250)
+base <- base[-c(nrow(base)),c(1,ncol(base))]
+
+base[1:10,2] <- dollar(base[1:10,2])
+
+
+```
+
+## Base Spending
+
+The WACFWRU base account balance was `r balance` at the end of state fiscal year 2019. Total spending on base funds was `r spending` in FY`r Year`, against total income of `r income`.
+
+```{r echo=FALSE}
+kable(base,caption = paste("Table 2. Spending on base funds by category in FY",Year,sep=""))
+
+
+```
