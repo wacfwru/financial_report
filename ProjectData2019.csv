@@ -1,0 +1,54 @@
+Title,PI,Dept,StartDate,EndDate,TotalDollars,NewDollars,Sponsor,ParentAgency,SponsorType,Coop ,University,IDC_Actual,IDC_Full,ProjectType,Repeat_YN
+Klamath Basin Suckers,Brett,CEE,8/15/2017,9/30/2019,122774,0,BR,BR,Federal,1,UW,15.00%,55.00%,Fish,0
+Guam BT Snakes,Converse,SAFS,2/5/2019,3/15/2020,175834,175835,DOD,DOD,Federal,1,UW,15.00%,55.50%,Reptile,0
+Demographic Responses,Converse,SAFS,10/22/2018,5/31/2023,281183,281183,NOAA,NOAA,Federal,1,UW,15.00%,55.50%,Fish,0
+MESA ROV Study,King,COE,7/1/2018,9/30/2020,32739,32739,NOAA,NOAA,Federal,1,UW,15.00%,55.50%,Fish,0
+Pathogen Prevalence,Friedman,SAFS,3/25/2019,9/30/2019,40962,40962,NOAA,NOAA,Federal,1,UW,15.00%,55.50%,Invert,0
+NPRB Polar Bears,Converse,SAFS,9/1/2018,3/31/2020,283781,283781,NPRB,NPRB,Other,0,UW,26.00%,26.00%,Mammal,0
+SG VanBlaricom R_SFA-5,VanBlaricom,SAFS,2/1/2014,8/31/2019,100162,0,SG,SG,Federal,0,UW,54.50%,54.50%,Invert,0
+Wrangle Island Geese,Grue,SAFS,4/1/2015,3/31/2019,31411,0,USFWS,USFWS,Federal,1,UW,15.00%,54.50%,Bird,0
+DNA Technology,Schindler,SAFS,3/15/2019,12/31/2019,51887,51887,USFWS,USFWS,Federal,1,UW,15.00%,55.50%,Fish,0
+IHN Virus In Chinook,Friedman,SAFS,8/22/2016,9/30/2021,647666,0,USFWS,USFWS,Federal,1,UW,15.00%,54.50%,Fish,0
+White River Bull Trout,Schindler,SAFS,10/1/2017,9/30/2019,96226,631,USFWS,USFWS,Federal,1,UW,15.00%,55.00%,Fish,0
+Floodplain Habitats,Olden,SAFS,10/22/2018,9/30/2019,30780,30780,USFWS,USFWS,Federal,1,UW,15.00%,55.50%,Habitat,0
+Common Loon Abundance,Converse,SAFS,8/10/2017,6/30/2019,9545,0,USGS,USGS,Federal,1,UW,15.00%,55.00%,Bird,0
+Pacific Herring Ich,Wood,SAFS,1/16/2017,1/14/2022,206706,0,USGS,USGS,Federal,1,UW,15.00%,54.50%,Fish,0
+Transgenerational Impact,Savan,Immunology,9/1/2017,8/30/2020,94806,0,USGS,USGS,Federal,1,UW,15.00%,55.00%,Fish,0
+Carbon Emission Age,Butman,SEFS,3/5/2019,9/30/2019,20000,20000,USGS,USGS,Federal,1,UW,15.00%,55.50%,Habitat,0
+Oregon Silverspot,Converse,SAFS,5/1/2018,9/30/2020,97720,0,USGS,USGS,Federal,1,UW,15.00%,53.00%,Invert,0
+Coho Size Forecasts,Schindler,SAFS,3/1/2019,2/28/2020,104470,104470,WDFW-Fisheries,WDFW,State,1,UW,26.00%,55.50%,Fish,0
+NonNative Finfish,J Seeb,SAFS,12/1/2018,12/31/2019,46000,46000,WDFW-Fisheries,WDFW,State,1,UW,0.00%,55.50%,Fish,0
+Skagit River Chinook,Quinn,SAFS,3/16/2018,6/30/2020,134416,0,WDFW-Fisheries,WDFW,State,1,UW,0.00%,55.00%,Fish,0
+Shoreline Toolbox,Litle,Sea Grant,1/10/2018,1/31/2020,128000,0,WDFW-Fisheries,WDFW,State,1,UW,26.00%,55.00%,Habitat,0
+European Green Crab,Litle,Sea Grant,2/1/2019,6/30/2019,40000,40000,WDFW-Fisheries,WDFW,State,1,UW,26.00%,55.50%,Invert,0
+Green Crab Team,Litle,SG,11/1/2017,12/31/2018,63000,0,WDFW-Habitat,WDFW,State,1,UW,26.00%,55.00%,Invert,1
+Green Crab Team,Litle,SG,11/1/2017,12/31/2018,117000,0,WDFW-Habitat,WDFW,State,1,UW,0.00%,55.00%,Invert,0
+WSU Biocontrol 2018,Andreas,Extension,3/21/2018,6/30/2019,25000,0,WDFW-Habitat,WDFW,State,1,WSU,0.00%,53.00%,Habitat,0
+WSU Leopard Frogs,Goldberg,SOE,1/15/2019,10/31/2020,48871,48871,WDFW-Wildlife,WDFW,State,1,WSU,0.00%,53.00%,Amphib,0
+Seabird Mortality,Parrish,SAFS,3/16/2015,7/31/2018,123000,0,WDFW-Wildlife,WDFW,State,1,UW,0.00%,54.50%,Bird,0
+WDFW Common Loons,Converse,SAFS,5/1/2018,6/30/2019,18630,0,WDFW-Wildlife,WDFW,State,1,UW,26.00%,55.00%,Bird,1
+WDFW Common Loons,Converse,SAFS,5/1/2018,6/30/2019,25000,0,WDFW-Wildlife,WDFW,State,1,UW,0.00%,55.00%,Bird,0
+Snowshoe Hare Density,Thornton,SOE,8/16/2017,8/15/2020,56470,0,WDFW-Wildlife,WDFW,State,1,WSU,0.00%,51.00%,Mammal,0
+WA Pred/Prey Dynamics,"Wirsing, Prugh, Gardner",SEFS,7/1/2016,6/30/2021,500000,0,WDFW-Wildlife,WDFW,State,1,UW,0.00%,54.50%,Mammal,0
+WA Pred/Prey Dynamics,"Wirsing, Prugh, Gardner",SEFS,7/1/2016,6/30/2021,575941,0,WDFW-Wildlife,WDFW,State,1,UW,26.00%,54.50%,Mammal,1
+WSU Deer Nutrition,Shipley,SOE,7/1/2013,6/30/2020,108620,0,WDFW-Wildlife,WDFW,State,1,WSU,0.00%,51.00%,Mammal,0
+CMER Riparian,"Moskal, Rogers",SEFS,4/25/2019,12/31/2019,39965,39965,WDNR,WDNR,State,1,UW,26.00%,55.50%,Habitat,0
+DNR 20 YR Plan,Kane,SEFS,4/1/2018,6/30/2019,102161,0,WDNR,WDNR,State,1,UW,26.00%,55.00%,Habitat,0
+DNR Data,Mass,AS,7/1/2013,12/31/2018,125000,0,WDNR,WDNR,State,1,UW,26.00%,54.50%,Habitat,0
+DNR Forest Modeling,Toth,SEFS,9/1/2012,6/30/2019,118188,0,WDNR,WDNR,State,1,UW,26.00%,54.50%,Habitat,0
+DNR Road Monitoring II,Istanbulluoglu,CEE,10/1/2017,9/30/2019,237719,0,WDNR,WDNR,State,1,UW,26.00%,55.00%,Habitat,0
+DNR Sci Review 9,Vogt,SEFS,1/1/2018,6/30/2021,109942,0,WDNR,WDNR,State,1,UW,0.00%,55.00%,Habitat,1
+DNR Sci Review 9,Vogt,SEFS,1/1/2018,6/30/2021,157312,0,WDNR,WDNR,State,1,UW,26.00%,55.00%,Habitat,0
+DNR Shoreline Biota 3,Dethier,FHL,10/15/2017,6/30/2019,65058,0,WDNR,WDNR,State,1,UW,0.00%,55.00%,Habitat,0
+Riparian Monitoring,Moskal,SEFS,12/1/2017,9/30/2018,25000,0,WDNR,WDNR,State,1,UW,0.00%,55.00%,Habitat,0
+WA State Trails,Bratman,SEFS,9/4/2018,6/30/2019,40400,40400,WDNR,WDNR,State,1,UW,26.00%,55.50%,Habitat,0
+Wetland Map Phase 2,"Moskal, Rogers",SEFS,7/1/2018,6/30/2019,124661,24661,WDNR,WDNR,State,1,UW,26.00%,55.50%,Habitat,0
+NEB Workshop,Yoder,WRC,3/19/2018,12/31/2018,95164,0,WDOE,WDOE,State,1,WSU,26.00%,53.00%,Fish,0
+eDNA Plant Monitoring,Olden,SAFS,7/1/2017,6/30/2019,74900,0,WDOE,WDOE,State,1,UW,0.00%,55.00%,Habitat,0
+PBT Monitoring,James,CUW,4/15/2018,3/31/2019,22349,0,WDOE,WDOE,State,1,UW,0.00%,55.00%,Habitat,0
+PFAS Chemical Action Plan,Page,Ruckleshaus,7/1/2017,12/31/2018,60000,0,WDOE,WDOE,State,1,WSU,26.00%,51.00%,Habitat,1
+PFAS Chemical Action Plan,Page,Ruckleshaus,7/1/2017,12/31/2018,20000,0,WDOE,WDOE,State,1,WSU,0.00%,51.00%,Habitat,0
+WA Wetland Mapping,"Moskal, Rogers",SEFS,5/23/2016,3/31/2019,110686,0,WDOE,WDOE,State,1,UW,0.00%,54.50%,Habitat,0
+WSU Beach Watchers,Bertolotto,Extension,2/28/2018,10/1/2018,6000,0,WDOE,WDOE,State,1,WSU,0.00%,53.00%,Habitat,0
+WSU Beachwatchers 13,Bertolotto,Extension,3/1/2019,9/30/2019,6000,6000,WDOE,WDOE,State,1,WSU,0.00%,53.00%,Habitat,0
+WSU Ozone,Yunha,CEE,8/13/2018,6/30/2019,13079,13079,WDOE,WDOE,State,1,WSU,0.00%,53.00%,Habitat,0
