@@ -3,6 +3,8 @@ title: "Washington Cooperative Fish & Wildlife Research Unit"
 author: "FY2020 Financial Report"
 date: "August 25, 2020"
 output: pdf_document
+fontsize: 11pt
+geometry: margin=1in
 ---
 
 ```{r include = FALSE} 
@@ -70,7 +72,7 @@ The WACFWRU Cooperative Agreement facilitated `r totaldollars.UW` in total proje
 
 ```{r echo=FALSE}
 
-kable(sponsor, caption = paste("Total funds and new funds by sponsor and university in FY",Year,sep="", align='lcrr'))
+kable(sponsor, caption = paste("Total funds and new funds by sponsor and university in FY", Year, ".", sep=""), align='lcrr')
 
 waiver.full <- waiver[,c(1,2,ncol(waiver)-1,ncol(waiver))]
 
@@ -90,9 +92,13 @@ WSU.next.left <- dollar(400000 - sum(as.numeric(WSU$Used[which(WSU$Year == paste
 
 \vspace{16pt} 
 
+\newpage
+
 ## Waiver Usage
 
 At UW, `r UW.curr.left` of the `r total.waiver` waiver was unused by the end of FY`r Year`. As of the date of this report, `r UW.next.left` is still available for FY`r Year.p1`. At WSU, `r WSU.curr.left` was unused by the end of FY`r Year`, while `r WSU.next.left` is still available for FY`r Year.p1`.
+
+\vspace{16pt} 
 
 
 ```{r echo=FALSE, fig.height = 3, fig.width = 5, fig.align = "center"}
@@ -106,10 +112,17 @@ theme_bw()
 ```
 
 
+\setlength{\leftskip}{0.5in}
+
+\setlength{\rightskip}{0.5in}
 
 Figure 1: Waiver used by agency and fiscal year at University of Washington (total available = $200,000 for WDFW, $100,000 for WDNR and WDOE).
 
-\vspace{16pt} 
+\setlength{\leftskip}{0in}
+
+\setlength{\rightskip}{0in}
+
+\vspace{24pt} 
 
 ```{r echo=FALSE, fig.height = 3, fig.width = 5, fig.align = "center"}
 
@@ -122,7 +135,15 @@ theme_bw()
 
 ```
 
+\setlength{\leftskip}{0.5in}
+
+\setlength{\rightskip}{0.5in}
+
 Figure 2: Waiver used by agency and fiscal year at Washington State University (total available = $200,000 for WDFW, $100,000 for WDNR and WDOE).
+
+\setlength{\leftskip}{0in}
+
+\setlength{\rightskip}{0in}
 
 \vspace{16pt} 
 
@@ -141,8 +162,10 @@ base[1:10,2] <- dollar(base[1:10,2])
 
 The WACFWRU base account balance was `r balance` at the end of state fiscal year 2019. Total spending on base funds was `r spending` in FY`r Year`, against total income of `r income`.
 
+\vspace{16pt} 
+
 ```{r echo=FALSE}
-kable(base,caption = paste("Spending on base funds by category in FY",Year,sep=""))
+kable(base, caption = paste("Spending on base funds by category in FY", Year, ".", sep=""), align = "lr")
 
 
 ```
