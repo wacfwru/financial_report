@@ -1,0 +1,12 @@
+Category,July,August,September,October,November,December,January,February,March,April,May,June,Total
+Salaries,5253,5253,2496, ,6000, , , ,1194,2388,2388,1194,26167
+Benefits,1114,1114,529, ,1254, , , ,253,506,506,253,5529
+Personal_Services,, ,, ,,,,,,,,,0
+Services,, ,96,575,1018,1713,34,160, ,195, ,641,4433
+Travel,,601,451,15,2227,16,113,787,558,79,521,849,6216
+Supplies,,152,13,7,386,,13,-35,39,, ,2640,3214
+Equipment,,,,,,,,,,,,,0
+Tuition,,, ,,, ,, ,5136,,1394,288,6818
+Adjustments,,, ,,,,517,,,,161,,678
+Total,6367,7120,3585,597,10884,1729,678,912,7180,3168,4971,5866,53056
+Balance,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,167383
