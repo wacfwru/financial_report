@@ -1,16 +1,21 @@
 ---
 title: "Washington Cooperative Fish & Wildlife Research Unit FY2019 Financial Report"
 date: "October 23, 2019"
-output: word_document
+output: pdf_document
 ---
 
-```{r setup, echo = FALSE, warning = FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r include = FALSE} 
 
 library(knitr)
 library(scales)
 library(ggplot2)
 library(tidyr)
+library(here)
+library(tinytex)
+```
+
+```{r setup, echo = FALSE, warning = FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, results = 'asis', fig.width = 4, fig.height = 3.5)
 
 Year <- "2019"
 Year.m1 <- as.character(as.numeric(Year)-1)
@@ -18,7 +23,7 @@ Year.p1 <- as.character(as.numeric(Year)+1)
 start.date <- paste("7/1/",Year.m1,sep="")
 end.date <- paste("6/30/",Year,sep="")
   
-projects <- read.csv("ProjectData2019.csv")
+projects <- read.csv(here("2019","ProjectData2019.csv"))
 coop.projects <- projects[c(projects$Coop == 1),]
 
 totaldollars <- dollar(sum(coop.projects$TotalDollars))
@@ -57,7 +62,7 @@ The WACFWRU Cooperative Agreement facilitated `r totaldollars` in total project 
 
 kable(sponsor, caption = paste("Table 1. Total funds and new funds by sponsor and university in FY",Year,sep=""))
 
-waiver <- read.csv("WaiverUsage.csv")
+waiver <- read.csv(here("2019","WaiverUsage2019.csv"))
 waiver <- waiver[,c(1,2,ncol(waiver)-1,ncol(waiver))]
 
 total.waiver <- dollar(400000)
@@ -85,13 +90,17 @@ UW %>%
   geom_bar(position = "dodge",stat="identity")+
   theme_bw()
 
+```
+
+```{r echo=FALSE, fig.height = 3, fig.width = 5}
+
 WSU %>%
   gather("Type","Value",-Agency) %>%
   ggplot(aes(Agency,Value,fill=Type))+
   geom_bar(position = "dodge",stat="identity")+
   theme_bw()
 
-base <- read.csv("BaseSpending.csv")
+base <- read.csv(here("2019","BaseSpending2019.csv"))
 balance <- dollar(base[nrow(base),ncol(base)])
 spending <- dollar(base[nrow(base)-1,ncol(base)])
 income <- dollar(71250)
