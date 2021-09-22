@@ -1,0 +1,191 @@
+---
+title: "Washington Cooperative Fish & Wildlife Research Unit"
+author: "FY2021 Financial Report"
+date: "September 16, 2021"
+output: pdf_document
+fontsize: 11pt
+geometry: margin=1in
+---
+
+```{r include = FALSE} 
+
+library(knitr)
+library(scales)
+library(ggplot2)
+library(tidyr)
+library(here)
+library(tinytex)
+library(reshape)
+```
+
+```{r setup, echo = FALSE, warning = FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, results = 'asis', fig.width = 4, fig.height = 3.5)
+
+projects <- read.csv(here("2021","ProjectData2021.csv"),header = TRUE)
+waiver <- read.csv(here("2021","WaiverUsage2021.csv"),header = TRUE)
+base <- read.csv(here("2021","BaseSpending2021.csv"),header = TRUE)
+
+Year <- "2021"
+Year.m1 <- as.character(as.numeric(Year)-1)
+Year.p1 <- as.character(as.numeric(Year)+1)
+start.date <- paste("7/1/",Year.m1,sep="")
+end.date <- paste("6/30/",Year,sep="")
+
+#keep only Coop projeects 
+coop.projects <- projects[c(projects$Coop == "Yes"),]
+coop.projects <- coop.projects[-c(which(is.na(coop.projects$StartDate)==TRUE)),]
+
+#keep only projects that were active in the relevant year
+start.after <- as.Date(coop.projects$StartDate, format = "%m/%d/%Y") > as.Date(end.date, format = "%m/%d/%Y") 
+end.before <- as.Date(coop.projects$EndDate, format = "%m/%d/%Y") < as.Date(start.date, format = "%m/%d/%Y") 
+
+annual.projects <- coop.projects[-c(union(which(start.after == TRUE),which(end.before == TRUE))),]
+
+#calculate total new dollars per project (both rates) 
+annual.projects$NewDollars_all <- annual.projects$NewDollars_1stRate+annual.projects$NewDollars_2ndRate
+annual.projects$NewDollars_real <- annual.projects$NewDollars_all 
+
+#don't allow negative new dollars 
+annual.projects$NewDollars_real[c(which(annual.projects$NewDollars_real<0))]<- 0
+
+#get total and new dollars by university   
+totaldollars.WSU <- dollar(sum(annual.projects$Total_Dollars[c(which(annual.projects$PI_1_University == "WSU"))]))
+newdollars.WSU <- dollar(sum(annual.projects$NewDollars_real[c(which(annual.projects$PI_1_University == "WSU"))]))
+
+totaldollars.UW <- dollar(sum(annual.projects$Total_Dollars[c(which(annual.projects$PI_1_University == "UW"))]))
+newdollars.UW <- dollar(sum(annual.projects$NewDollars_real[c(which(annual.projects$PI_1_University == "UW"))]))
+
+#create sponsor (combine WDFW with division)
+#annual.projects$cooperator <- annual.projects$Sponsor
+#for(i in 1:nrow(annual.projects)){
+#  if(annual.projects$Sponsor[i]=="WDFW"){
+#  annual.projects$cooperator[i] <- paste(annual.projects$cooperator[i],annual.projects$Sponsor_Division[i],sep="-")}}
+
+#get funds by sponsor   
+funds.by.agency <-  aggregate(annual.projects$Total_Dollars,by=list(annual.projects$Sponsor), FUN = sum)
+funds.by.agency <- funds.by.agency[order(funds.by.agency$x,decreasing=TRUE),]
+agency1 <- funds.by.agency[1,1]
+agency2 <- funds.by.agency[2,1]
+agency3 <- funds.by.agency[3,1]
+
+total.funds.by.sponsor <- aggregate(annual.projects$Total_Dollars,by = list(annual.projects$Sponsor,annual.projects$PI_1_University),FUN=sum, drop = FALSE)
+
+new.funds.by.sponsor <- aggregate(annual.projects$NewDollars_real,by = list(annual.projects$Sponsor,annual.projects$PI_1_University),FUN=sum, drop = FALSE)
+
+sponsor <- cbind(total.funds.by.sponsor,new.funds.by.sponsor[,3])
+colnames(sponsor) <- c("Sponsor","University","Total Funds","New Funds")
+
+Required <- c("WDFW","WDNR","WDOE")
+Required <- is.element(sponsor[,1],Required)
+sponsor[intersect(which(Required == TRUE), which(is.na(sponsor$'Total Funds'==TRUE))),c(3,4)] <- 0
+sponsor <- sponsor[complete.cases(sponsor), ]
+sponsor$'Total Funds' <- dollar(sponsor$'Total Funds')
+sponsor$'New Funds' <- dollar(sponsor$'New Funds')
+
+```
+
+## Total Project Funds
+
+The WACFWRU Cooperative Agreement facilitated `r totaldollars.UW` in total project funds at the University of Washington and `r totaldollars.WSU` in total project funds at Washington State University in state fiscal year `r Year` (`r start.date` to `r end.date`), with `r newdollars.UW` in new project funds at University of Washington and `r newdollars.WSU` in new project funds at Washington State University. `r agency1` was the largest single funder, followed by `r agency2` and `r agency3`. 
+
+\vspace{16pt} 
+
+```{r echo=FALSE}
+
+kable(sponsor, caption = paste("Total funds and new funds by sponsor and university in FY", Year, ".", sep=""), align='lcrr')
+
+waiver.full <- waiver[,c(1,2,ncol(waiver)-1,ncol(waiver))]
+
+waiver <- melt(waiver.full, id=c("Agency","University"))
+colnames(waiver) <- c("Agency","University","Year","Used")
+total.waiver <- dollar(400000)
+
+UW <- waiver[which(waiver$University == "UW"),-c(2)]
+UW.curr <- dollar(sum(as.numeric(UW$Used[which(UW$Year == paste("FY",Year,sep=""))])))
+UW.next <- dollar(sum(as.numeric(UW$Used[which(UW$Year == paste("FY",Year.p1,sep=""))])))
+
+WSU <- waiver[which(waiver$University == "WSU"),-c(2)]
+WSU.curr <- dollar(sum(as.numeric(WSU$Used[which(WSU$Year == paste("FY",Year,sep=""))])))
+WSU.next <- dollar(sum(as.numeric(WSU$Used[which(WSU$Year == paste("FY",Year.p1,sep=""))])))
+
+```
+
+\vspace{16pt} 
+
+\newpage
+
+## Waiver Usage
+
+At UW, `r UW.curr` of the `r total.waiver` waiver was used by the end of FY`r Year`. As of the date of this report, `r UW.next` has been allocated for FY`r Year.p1`. At WSU, `r WSU.curr` was used by the end of FY`r Year`, while `r WSU.next` has been allocated for FY`r Year.p1`.
+
+\vspace{16pt} 
+
+
+```{r echo=FALSE, fig.height = 3, fig.width = 5, fig.align = "center"}
+
+ggplot(data = UW, aes(x=Agency, y = Used, fill=Year))+
+geom_bar(position = "dodge",stat="identity")+
+labs(y="UW $ Used", x = "Agency")+
+ylim(0,200000)+
+theme_bw()
+
+```
+
+
+\setlength{\leftskip}{0.5in}
+
+\setlength{\rightskip}{0.5in}
+
+Figure 1: Waiver used by agency and fiscal year at University of Washington (total available = $200,000 for WDFW, $100,000 for WDNR and WDOE).
+
+\setlength{\leftskip}{0in}
+
+\setlength{\rightskip}{0in}
+
+\vspace{24pt} 
+
+```{r echo=FALSE, fig.height = 3, fig.width = 5, fig.align = "center"}
+
+
+ggplot(data = WSU, aes(x=Agency, y = Used, fill=Year))+
+geom_bar(position = "dodge",stat="identity")+
+labs(y="WSU $ Used", x = "Agency")+
+ylim(0,200000)+
+theme_bw()
+
+```
+
+\setlength{\leftskip}{0.5in}
+
+\setlength{\rightskip}{0.5in}
+
+Figure 2: Waiver used by agency and fiscal year at Washington State University (total available = $200,000 for WDFW, $100,000 for WDNR and WDOE).
+
+\setlength{\leftskip}{0in}
+
+\setlength{\rightskip}{0in}
+
+\vspace{16pt} 
+
+```{r echo=FALSE, fig.height = 3, fig.width = 5}
+
+balance <- dollar(base[nrow(base),ncol(base)])
+spending <- dollar(base[nrow(base)-1,ncol(base)])
+income <- dollar(71250)
+base <- base[-c(nrow(base)),c(1,ncol(base))]
+
+base[1:11,2] <- dollar(base[1:11,2])
+
+```
+
+## Base Spending
+
+The WACFWRU base account balance was `r balance` at the end of state fiscal year `r Year`. Total spending on base funds was `r spending` in FY`r Year`, against total income of `r income`.
+
+\vspace{16pt} 
+
+```{r echo=FALSE}
+kable(base, caption = paste("Spending on base funds by category in FY", Year, ".", sep=""), align = "lr")
+
+
+```
